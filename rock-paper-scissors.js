@@ -1,7 +1,12 @@
 let humanScore = 0;
 let computerScore = 0;
 
-playGame();
+const buttons = document.querySelectorAll("button");
+buttons.forEach((button) => {
+    button.addEventListener("click", () => {
+        playRound(button.id, getComputerChoice());
+    });
+});
 
 function getComputerChoice() {
     let randomNumber = 0;
@@ -81,16 +86,5 @@ function playRound(humanChoice, computerChoice) {
             console.log('Scissors cut paper! You win!');
             humanScore++;
         }
-    }
-}
-
-function playGame() {
-    for (let gameRound = 0; gameRound < 5; gameRound++) {
-        const humanSelection = getHumanChoice();
-        const computerSelection = getComputerChoice();
-
-        playRound(humanSelection, computerSelection);
-        console.log(`Human score: ${humanScore}`);
-        console.log(`Computer score: ${computerScore}`);
     }
 }
