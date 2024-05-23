@@ -33,19 +33,6 @@ function getComputerChoice() {
     }
 }
 
-function getHumanChoice() {
-    while (true) {
-        let input = prompt('Enter your choice:')
-
-        if (input === 'rock' || input === 'paper' || input === 'scissors') {
-            return input;
-        }
-
-        else {
-            console.log('Invalid input');
-        }
-    }
-}
 
 function playRound(humanChoice, computerChoice) {
     if (humanChoice === computerChoice) {
