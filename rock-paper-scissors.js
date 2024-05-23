@@ -35,43 +35,63 @@ function getComputerChoice() {
 
 
 function playRound(humanChoice, computerChoice) {
+    const roundResult = document.querySelector("#round-result");
     if (humanChoice === computerChoice) {
-        console.log("It's a tie!");
+        roundResult.textContent = "It's a tie!";
     }
 
     else if (humanChoice === 'rock') {
         if (computerChoice === 'paper') {
-            console.log('Paper covers rock! You lose!');
+            roundResult.textContent = 'Paper covers rock! You lose!';
             computerScore++;
         }
 
         else if (computerChoice === 'scissors') {
-            console.log('Rock smashes scissors! You win!');
+            roundResult.textContent = 'Rock smashes scissors! You win!';
             humanScore++;
         }
     }
 
     else if (humanChoice === 'paper') {
         if (computerChoice === 'scissors') {
-            console.log('Scissors cut paper! You lose!');
+            roundResult.textContent = 'Scissors cut paper! You lose!';
             computerScore++;
         }
 
         else if (computerChoice === 'rock') {
-            console.log('Paper covers rock! You win!');
+            roundResult.textContent = 'Paper covers rock! You win!';
             humanScore++;
         }
     }
 
     else if (humanChoice === 'scissors') {
         if (computerChoice === 'rock') {
-            console.log('Rock smashes scissors! You lose!');
+            roundResult.textContent = 'Rock smashes scissors! You lose!';
             computerScore++;
         }
 
         else if (computerChoice === 'paper') {
-            console.log('Scissors cut paper! You win!');
+            roundResult.textContent = 'Scissors cut paper! You win!';
             humanScore++;
         }
     }
+    displayScore(computerScore, humanScore);
+}
+
+function displayScore(computerScore, humanScore) {
+    const scores = document.querySelector("#scores");
+    scores.textContent = `Computer: ${computerScore} Human: ${humanScore}`;
+    if (computerScore === 5) {
+        announceWinner('Computer');
+    }
+    if (humanScore === 5) {
+        announceWinner('Human');
+    }
+}
+
+function announceWinner(player) {
+    const winner = document.querySelector('#winner');
+    winner.textContent = `${player} wins!`;
+    humanScore = 0;
+    computerScore = 0;
 }
