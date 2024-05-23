@@ -1,12 +1,16 @@
 let humanScore = 0;
 let computerScore = 0;
 
-const buttons = document.querySelectorAll("button");
-buttons.forEach((button) => {
-    button.addEventListener("click", () => {
-        playRound(button.id, getComputerChoice());
+playGame();
+
+function playGame() {
+    const buttons = document.querySelectorAll("button");
+    buttons.forEach((button) => {
+        button.addEventListener("click", () => {
+            playRound(button.id, getComputerChoice());
+        });
     });
-});
+}
 
 function getComputerChoice() {
     let randomNumber = 0;
@@ -35,6 +39,8 @@ function getComputerChoice() {
 
 
 function playRound(humanChoice, computerChoice) {
+    const winner = document.querySelector("#winner");
+    winner.textContent = "";
     const roundResult = document.querySelector("#round-result");
     if (humanChoice === computerChoice) {
         roundResult.textContent = "It's a tie!";
@@ -91,7 +97,9 @@ function displayScore(computerScore, humanScore) {
 
 function announceWinner(player) {
     const winner = document.querySelector('#winner');
+    const roundResult = document.querySelector('#round-result');
     winner.textContent = `${player} wins!`;
     humanScore = 0;
     computerScore = 0;
+    roundResult.textContent = "";
 }
